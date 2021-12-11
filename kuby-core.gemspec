@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'railties', '>= 5.1'
   s.add_dependency 'rouge', '~> 3.0'
   s.add_dependency 'sorbet-runtime-stub', '~> 0.2'
+  s.add_dependency 'pry'
 
   s.add_development_dependency 'rspec'
 

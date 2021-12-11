@@ -3,6 +3,7 @@
 require 'json'
 require 'open3'
 require 'shellwords'
+require 'pry'
 
 module Kuby
   module Docker
@@ -14,6 +15,7 @@ module Kuby
 
       sig { params(executable: T.nilable(String)).void }
       def initialize(executable = nil)
+        binding.pry
         @executable = T.let(executable || `which docker`.strip, String)
       end
 
@@ -65,6 +67,8 @@ module Kuby
           *docker_args,
           '.'
         ]
+
+        binding.pry
 
         open3_w(cmd) do |stdin, _wait_threads|
           stdin.puts(image.dockerfile.to_s)
