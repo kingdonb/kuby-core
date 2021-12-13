@@ -7,8 +7,6 @@ module Kuby
 
       DEFAULT_PACKAGES = T.let([
         [:ca_certificates, nil],
-        [:nodejs, '12.14.1'],
-        [:yarn, '1.21.1'],
         [:c_toolchain, nil],
         [:tzdata, nil],
         [:git, nil]

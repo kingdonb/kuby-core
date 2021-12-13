@@ -1,3 +1,6 @@
+## 0.16.0-alpha
+* Use `docker buildx build` to expose buildkit options
+
 ## Next
 * Allow storage class to be customized when using the built-in bare metal provider.
 

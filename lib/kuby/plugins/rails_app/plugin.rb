@@ -18,7 +18,7 @@ module Kuby
         DEFAULT_ASSET_PATH = './public'.freeze
 
         value_field :root, default: '.'
-        value_fields :hostname, :tls_enabled
+        value_fields :hostname, :ingress_class, :tls_enabled
         value_fields :manage_database, :database, :replicas
         value_fields :asset_url, :packs_url, :asset_path
 
@@ -81,7 +81,7 @@ module Kuby
           image_with_tag = "#{docker.image.image_url}:#{kubernetes.tag || Kuby::Docker::LATEST_TAG}"
 
           if assets = environment.kubernetes.plugin(:rails_assets)
-            assets.configure_ingress(ingress, hostname)
+            assets.configure_ingress(ingress, hostname, ingress_class)
           end
 
           spec = self
@@ -364,14 +364,14 @@ module Kuby
           spec = self
           tls_enabled = @tls_enabled
 
-          @ingress ||= KubeDSL::DSL::Extensions::V1beta1::Ingress.new do
+          @ingress ||= KubeDSL::DSL::Networking::V1::Ingress.new do
             metadata do
               name "#{spec.selector_app}-ingress"
               namespace spec.namespace.metadata.name
 
-              annotations do
-                add :'kubernetes.io/ingress.class', 'nginx'
-              end
+              # annotations do
+                # add :'kubernetes.io/ingress.class', 'nginx'
+              # end
             end
 
             spec do
@@ -381,10 +381,15 @@ module Kuby
                 http do
                   path do
                     path '/'
+                    path_type 'Prefix'
 
                     backend do
-                      service_name spec.service.metadata.name
-                      service_port spec.service.spec.ports.first.port
+                      service do
+                        name spec.service.metadata.name
+                        port do
+                          number spec.service.spec.ports.first.port
+                        end
+                      end
                     end
                   end
                 end

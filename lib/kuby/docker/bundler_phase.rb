@@ -67,6 +67,11 @@ module Kuby
           dockerfile.env("BUNDLE_WITHOUT='#{wo.join(' ')}'")
         end
 
+        dockerfile.arg("MINIO_ACCESS_KEY=required")
+        dockerfile.arg("MINIO_SECRET_KEY=required")
+        dockerfile.env("MINIO_ACCESS_KEY ${MINIO_ACCESS_KEY}")
+        dockerfile.env("MINIO_SECRET_KEY ${MINIO_SECRET_KEY}")
+
         dockerfile.run(
           executable || 'bundle', 'install',
           '--jobs', '$(nproc)',
@@ -74,8 +79,17 @@ module Kuby
           '--gemfile', gf
         )
 
+        #   %w'gem install specific_install')
+        # dockerfile.run(
+        #   %w'gem specific_install https://github.com/kingdonb/prebundler')
+        # dockerfile.copy('.prebundle_config', '.')
+        # dockerfile.run(
+        #   %w'prebundle install')
+
         # generate binstubs and add the bin directory to our path
         dockerfile.run(executable || 'bundle', 'binstubs', '--all')
+        # dockerfile.run(executable || 'bundle', 'binstubs', '--all')
+        #>>>>>>> 6a77b29 (don't run bundle binstubs --all)
         dockerfile.env("PATH=./bin:$PATH")
       end
 

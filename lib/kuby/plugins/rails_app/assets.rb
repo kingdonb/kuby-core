@@ -19,8 +19,12 @@ module Kuby
           instance_eval(&block)
         end
 
-        def configure_ingress(ingress, hostname)
+        def configure_ingress(ingress, hostname, ingress_class)
           spec = self
+
+          ingress.spec do
+            ingress_class_name ingress_class
+          end
 
           ingress.spec.rule do
             host hostname
@@ -28,19 +32,29 @@ module Kuby
             http do
               path do
                 path spec.asset_url
+                path_type 'Prefix'
 
                 backend do
-                  service_name spec.service.metadata.name
-                  service_port spec.service.spec.ports.first.port
+                  service do
+                    name spec.service.metadata.name
+                    port do
+                      number spec.service.spec.ports.first.port
+                    end
+                  end
                 end
               end
 
               path do
                 path spec.packs_url
+                path_type 'Prefix'
 
                 backend do
-                  service_name spec.service.metadata.name
-                  service_port spec.service.spec.ports.first.port
+                  service do
+                    name spec.service.metadata.name
+                    port do
+                      number spec.service.spec.ports.first.port
+                    end
+                  end
                 end
               end
             end
