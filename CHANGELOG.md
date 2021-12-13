@@ -1,3 +1,6 @@
+## 0.16.0
+* Use `docker buildx build` to expose buildkit options
+
 ## 0.15.0
 * Add an extra parameter to the Docker spec for specifying the URL of the Docker registry index.
   - In most cases, the registry and registry index URLs will be the same. However Docker Hub, the default registry, uses index.docker.io for API requests (catalog, tags, etc) but only allows pushes to docker.io.
