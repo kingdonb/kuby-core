@@ -17,10 +17,11 @@ module Kuby
         identifier = image.identifier ? " ##{image.identifier}" : ""
         Kuby.logger.info("Dockerfile for#{identifier} image #{image.image_url} with tags #{image.tags.join(', ')}")
         theme = Rouge::Themes::Base16::Solarized.new
-        formatter = Rouge::Formatters::Terminal256.new(theme)
-        lexer = Rouge::Lexers::Docker.new
-        tokens = lexer.lex(image.dockerfile.to_s)
-        puts formatter.format(tokens)
+        # formatter = Rouge::Formatters::Terminal256.new(theme)
+        # lexer = Rouge::Lexers::Docker.new
+        # tokens = lexer.lex(image.dockerfile.to_s)
+        # puts formatter.format(tokens)
+        puts image.dockerfile.to_s
       end
     end
 
