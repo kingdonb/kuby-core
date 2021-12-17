@@ -30,8 +30,12 @@ module Kuby
                 path spec.asset_url
 
                 backend do
-                  service_name spec.service.metadata.name
-                  service_port spec.service.spec.ports.first.port
+                  service do
+                    name spec.service.metadata.name
+                    port do
+                      number spec.service.spec.ports.first.port
+                    end
+                  end
                 end
               end
 
@@ -39,8 +43,12 @@ module Kuby
                 path spec.packs_url
 
                 backend do
-                  service_name spec.service.metadata.name
-                  service_port spec.service.spec.ports.first.port
+                  service do
+                    name spec.service.metadata.name
+                    port do
+                      number spec.service.spec.ports.first.port
+                    end
+                  end
                 end
               end
             end
