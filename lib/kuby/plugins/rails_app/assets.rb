@@ -28,6 +28,7 @@ module Kuby
             http do
               path do
                 path spec.asset_url
+                path_type 'Prefix'
 
                 backend do
                   service do
@@ -41,6 +42,7 @@ module Kuby
 
               path do
                 path spec.packs_url
+                path_type 'Prefix'
 
                 backend do
                   service do
