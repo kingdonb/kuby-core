@@ -22,6 +22,10 @@ module Kuby
         def configure_ingress(ingress, hostname)
           spec = self
 
+          ingress.spec do
+            ingress_class_name nil
+          end
+
           ingress.spec.rule do
             host hostname
 
