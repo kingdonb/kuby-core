@@ -19,11 +19,11 @@ module Kuby
           instance_eval(&block)
         end
 
-        def configure_ingress(ingress, hostname)
+        def configure_ingress(ingress, hostname, ingress_class)
           spec = self
 
           ingress.spec do
-            ingress_class_name nil
+            ingress_class_name ingress_class
           end
 
           ingress.spec.rule do
