@@ -369,9 +369,9 @@ module Kuby
               name "#{spec.selector_app}-ingress"
               namespace spec.namespace.metadata.name
 
-              annotations do
-                add :'kubernetes.io/ingress.class', 'nginx'
-              end
+              # annotations do
+                # add :'kubernetes.io/ingress.class', 'nginx'
+              # end
             end
 
             spec do
