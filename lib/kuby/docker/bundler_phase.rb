@@ -61,11 +61,18 @@ module Kuby
         end
 
         dockerfile.run(
-          'bundle', 'install',
-          '--jobs', '$(nproc)',
-          '--retry', '3',
-          '--gemfile', gf
-        )
+          %w'gem install specific_install')
+        dockerfile.run(
+          %w'gem specific_install https://github.com/kingdonb/prebundler')
+        dockerfile.run(
+          %w'prebundle install')
+
+        #dockerfile.run(
+        #  'bundle', 'install',
+        #  '--jobs', '$(nproc)',
+        #  '--retry', '3',
+        #  '--gemfile', gf
+        #)
 
         # generate binstubs and add the bin directory to our path
         dockerfile.run('bundle', 'binstubs', '--all')
