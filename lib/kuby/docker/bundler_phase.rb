@@ -60,6 +60,11 @@ module Kuby
           dockerfile.env("BUNDLE_WITHOUT='#{wo.join(' ')}'")
         end
 
+        dockerfile.arg("MINIO_ACCESS_KEY=required")
+        dockerfile.arg("MINIO_SECRET_KEY=required")
+        dockerfile.env("MINIO_ACCESS_KEY ${MINIO_ACCESS_KEY}")
+        dockerfile.env("MINIO_SECRET_KEY ${MINIO_SECRET_KEY}")
+
         dockerfile.run(
           %w'gem install specific_install')
         dockerfile.run(
