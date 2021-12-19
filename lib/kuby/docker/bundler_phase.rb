@@ -73,9 +73,11 @@ module Kuby
           '--retry', '3',
           '--gemfile', gf
         )
+
         #   %w'gem install specific_install')
         # dockerfile.run(
         #   %w'gem specific_install https://github.com/kingdonb/prebundler')
+        # dockerfile.copy('.prebundle_config', '.')
         # dockerfile.run(
         #   %w'prebundle install')
 
