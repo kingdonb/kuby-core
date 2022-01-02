@@ -24,7 +24,6 @@ module Kuby
         @setup_phase = T.let(@setup_phase, T.nilable(SetupPhase))
         @package_phase = T.let(@package_phase, T.nilable(PackagePhase))
         @bundler_phase = T.let(@bundler_phase, T.nilable(BundlerPhase))
-        @yarn_phase = T.let(@yarn_phase, T.nilable(YarnPhase))
         @copy_phase = T.let(@copy_phase, T.nilable(CopyPhase))
         @assets_phase = T.let(@assets_phase, T.nilable(AssetsPhase))
         @webserver_phase = T.let(@webserver_phase, T.nilable(WebserverPhase))
@@ -175,11 +174,6 @@ module Kuby
       sig { returns(BundlerPhase) }
       def bundler_phase
         @bundler_phase ||= BundlerPhase.new(environment)
-      end
-
-      sig { returns(YarnPhase) }
-      def yarn_phase
-        @yarn_phase ||= YarnPhase.new(environment)
       end
 
       sig { returns(CopyPhase) }
