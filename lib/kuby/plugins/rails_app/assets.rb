@@ -329,14 +329,14 @@ module Kuby
 
             # this can handle more than 2 tags by virtue of using each_cons :)
             tags.each_cons(2) do |prev_tag, tag|
-              prev_image_name = "#{app_name}:#{prev_tag}"
+              prev_image_name = "#{app_name}-#{prev_tag}"
               df.from("#{base_image.image_url}:#{prev_tag}", as: prev_image_name)
               df.arg('RAILS_MASTER_KEY')
               df.run("mkdir -p #{RAILS_MOUNT_PATH}")
               df.run("env RAILS_MASTER_KEY=$RAILS_MASTER_KEY bundle exec rake kuby:rails_app:assets:copy")
 
               if tag
-                image_name = "#{app_name}:#{tag}"
+                image_name = "#{app_name}-#{tag}"
                 df.from("#{base_image.image_url}:#{tag}", as: image_name)
                 df.arg('RAILS_MASTER_KEY')
                 df.copy("--from=#{prev_image_name} #{RAILS_MOUNT_PATH}", RAILS_MOUNT_PATH)
