@@ -81,7 +81,7 @@ module Kuby
         #)
 
         # generate binstubs and add the bin directory to our path
-        dockerfile.run('bundle', 'binstubs', '--all')
+        # dockerfile.run('bundle', 'binstubs', '--all')
         dockerfile.env("PATH=./bin:$PATH")
       end
 
