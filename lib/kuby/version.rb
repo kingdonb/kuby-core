@@ -2,5 +2,5 @@
 
 module Kuby
   VERSION = '0.16.1'.freeze
-#  VERSION = '0.16.0-alpha10'.freeze
+#  VERSION = '0.16.0-alpha11'.freeze
 end
