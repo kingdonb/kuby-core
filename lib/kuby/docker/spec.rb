@@ -214,7 +214,6 @@ module Kuby
           stack.use(:setup_phase, setup_phase)
           stack.use(:package_phase, package_phase)
           stack.use(:bundler_phase, bundler_phase)
-          stack.use(:yarn_phase, yarn_phase)
           stack.use(:copy_phase, copy_phase)
           stack.use(:assets_phase, assets_phase)
           stack.use(:webserver_phase, webserver_phase)
