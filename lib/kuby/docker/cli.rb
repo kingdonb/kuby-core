@@ -2,6 +2,7 @@
 
 require 'json'
 require 'open3'
+require 'ptools'
 require 'shellwords'
 
 module Kuby
