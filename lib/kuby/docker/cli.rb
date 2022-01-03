@@ -14,7 +14,7 @@ module Kuby
 
       sig { params(executable: T.nilable(String)).void }
       def initialize(executable = nil)
-        @executable = T.let(executable || find_executable('docker'), String)
+        @executable = T.let(executable || File.which('docker'), String)
       end
 
       sig { returns(T.nilable(String)) }
