@@ -30,5 +30,6 @@ module Kuby
     autoload :TimestampedImage, 'kuby/docker/timestamped_image'
     autoload :TimestampTag,     'kuby/docker/timestamp_tag'
     autoload :WebserverPhase,   'kuby/docker/webserver_phase'
+    autoload :YarnPhase,        'kuby/docker/yarn_phase'
   end
 end

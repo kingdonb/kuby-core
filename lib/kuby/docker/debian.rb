@@ -7,6 +7,8 @@ module Kuby
 
       DEFAULT_PACKAGES = T.let([
         [:ca_certificates, nil],
+        [:nodejs, '12.14.1'],
+        [:yarn, '1.21.1']
       ].freeze, T::Array[[Symbol, T.nilable(String)]])
 
       sig { returns(Layer) }
