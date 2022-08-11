@@ -144,8 +144,8 @@ Kuby.register_distro(:debian, Kuby::Docker::Debian)
 Kuby.register_distro(:alpine, Kuby::Docker::Alpine)
 
 # packages
-#Kuby.register_package(:nodejs, Kuby::Docker::Packages::Nodejs)
-#Kuby.register_package(:yarn, Kuby::Docker::Packages::Yarn)
+Kuby.register_package(:nodejs, Kuby::Docker::Packages::Nodejs)
+Kuby.register_package(:yarn, Kuby::Docker::Packages::Yarn)
 
 Kuby.register_package(:ca_certificates, 'ca-certificates')
 Kuby.register_package(:tzdata, 'tzdata')
